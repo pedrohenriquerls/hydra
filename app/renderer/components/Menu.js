@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu from './Menu';
 
-export default class Login extends Component {
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+
+export default class Menu extends Component {
   static propTypes = {
     onLogin: PropTypes.func.isRequired,
   };
@@ -27,10 +30,13 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <Menu />
-        <h2>Login</h2>
-        <input onChange={this.handleChange} type="text" value={this.state.username} />
-        <button onClick={this.handleLogin}>Log In</button>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="title" color="inherit">
+              React & Material-UI Sample Application
+            </Typography>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
