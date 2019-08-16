@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu from './Menu';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
-import Box from '@material-ui/core/Box';
 
 const cardStyles = makeStyles(theme => ({
   card: {
@@ -38,8 +36,8 @@ function ItemCard() {
 
 const layoutStyle = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: 'blue',
+    height: "100%",
+    flex: 1
   },
   content: {
     backgroundColor: 'red'
@@ -47,7 +45,7 @@ const layoutStyle = makeStyles(theme => ({
   list: {
     width: 85,
     maxWidth: 85,
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
   },
   paper: {
     textAlign: 'left',
@@ -64,6 +62,7 @@ function Layout() {
       justify="flex-start"
       alignItems="stretch"
       spacing={1}
+      className={classes.root}
       >
       <Grid item xs={2} className={classes.list}>
         <ItemCard/>
@@ -85,7 +84,6 @@ export default class Index extends Component {
 
   }
 
-
   state = {
     username: '',
   };
@@ -104,10 +102,6 @@ export default class Index extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <Layout/>
-      </div>
-    );
+    return (<Layout/>);
   }
 }
