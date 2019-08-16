@@ -53,9 +53,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function VerticalTabs() {
+function VerticalTabs({value, setValue}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -78,27 +77,6 @@ function VerticalTabs() {
         <Tab label="Item Six" />
         <Tab label="Item Seven" />
       </Tabs>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel>
     </div>
   );
 }
@@ -130,10 +108,12 @@ function ItemCard() {
 const layoutStyle = makeStyles(theme => ({
   root: {
     height: "100%",
-    flex: 1
+
   },
   content: {
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    margin: 0,
+    padding: 0
   },
   list: {
     width: 85,
@@ -148,6 +128,8 @@ const layoutStyle = makeStyles(theme => ({
 
 function Layout() {
   const classes = layoutStyle();
+  const [value, setValue] = React.useState(0);
+
   return (
     <Grid
       container
@@ -158,10 +140,30 @@ function Layout() {
       className={classes.root}
       >
       <Grid item xs={2} className={classes.list}>
-        <ItemCard/>
+        <VerticalTabs value={value} setValue={setValue}/>
       </Grid>
       <Grid item xs className={classes.content}>
-        <VerticalTabs/>
+        <TabPanel value={value} index={0}>
+          Item One
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          Item Two
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          Item Three
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          Item Four
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          Item Five
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          Item Six
+        </TabPanel>
+        <TabPanel value={value} index={6}>
+          Item Seven
+        </TabPanel>
       </Grid>
     </Grid>
   )
