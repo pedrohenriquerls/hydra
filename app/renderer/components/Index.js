@@ -15,7 +15,7 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <Typography
+    <Box
       component="div"
       role="tabpanel"
       hidden={value !== index}
@@ -23,8 +23,8 @@ function TabPanel(props) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
-    </Typography>
+      {children}
+    </Box>
   );
 }
 
@@ -50,7 +50,16 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    minWidth: '60 !important',
+    minHeight: 60
   },
+  tab: {
+    width: 87,
+    height: 76,
+    minWidth: '76px !important',
+    minHeight: '76px !important',
+    maxHeight: '76px !important'
+  }
 }));
 
 function VerticalTabs({value, setValue}) {
@@ -70,7 +79,7 @@ function VerticalTabs({value, setValue}) {
         aria-label="Vertical tabs example"
         className={classes.tabs}
         >
-        <Tab icon={        <ItemCard/>} />
+        <Tab icon={<ItemCard/>} className={classes.tab}/>
         <Tab label="Item Three" />
         <Tab label="Item Four" />
         <Tab label="Item Five" />
@@ -85,9 +94,10 @@ const cardStyles = makeStyles(theme => ({
   card: {
     maxWidth: 60,
     maxHeight: 60,
+    minWidth: 60,
+    minHeight: 60,
     height: 60,
     width: 60,
-    margin: theme.spacing(1),
   },
 }));
 
@@ -111,11 +121,13 @@ const layoutStyle = makeStyles(theme => ({
 
   },
   content: {
-    backgroundColor: 'red',
+    height: '100%',
+    widht: '100%',
     margin: 0,
-    padding: 0
+    padding: '0 !important'
   },
   list: {
+    padding: '0px !important',
     width: 85,
     maxWidth: 85,
     backgroundColor: 'transparent',
@@ -138,13 +150,16 @@ function Layout() {
       alignItems="stretch"
       spacing={1}
       className={classes.root}
-      >
+    >
       <Grid item xs={2} className={classes.list}>
         <VerticalTabs value={value} setValue={setValue}/>
       </Grid>
       <Grid item xs className={classes.content}>
-        <TabPanel value={value} index={0}>
-          Item One
+        <TabPanel value={value} index={0} className={classes.content}>
+          <webview
+            src="https://www.github.com/"
+            className={classes.content}
+          />
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two
