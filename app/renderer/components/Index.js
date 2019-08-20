@@ -109,7 +109,8 @@ function ItemCard() {
       component="img"
       alt="Slack"
       height="60"
-      image="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png"
+      image="https://img.icons8.com/dusk/96/000000/gmail.png"
+      //image="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png"
       title="Slack"
       />
   );
@@ -157,8 +158,10 @@ function Layout() {
       <Grid item xs className={classes.content}>
         <TabPanel value={value} index={0} className={classes.content}>
           <webview
-            src="https://www.github.com/"
+            src=""
             className={classes.content}
+            enableremotemodule="false"
+            partition="persist:github"
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
