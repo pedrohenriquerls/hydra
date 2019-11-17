@@ -14,7 +14,7 @@ function TabPanel({value, index, className, src, id}) {
     >
       <webview
         className={className}
-        src=""
+        src={src}
         enableremotemodule="false"
         partition={`persist:${id}`}
       />

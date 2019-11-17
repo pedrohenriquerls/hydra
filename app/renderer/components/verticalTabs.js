@@ -53,7 +53,7 @@ function fetchIconSrc(icon) {
   return `https://img.icons8.com/dusk/96/000000/${icon}.png`
 }
 
-function TabIcon({ icon, image, title }) {
+function tabIcon({ icon, image, title }) {
   const classes = useStyles();
 
   return (
@@ -64,7 +64,7 @@ function TabIcon({ icon, image, title }) {
   );
 }
 
-export default function VerticalTabs({value, setValue}) {
+export default function VerticalTabs({value, setValue, itens}) {
   const classes = useStyles();
 
   function handleChange(event, newValue) {
@@ -80,13 +80,8 @@ export default function VerticalTabs({value, setValue}) {
         onChange={handleChange}
         aria-label="Vertical tabs example"
         className={classes.tabs}
-        >
-        <TabIcon icon='slack' title='Slack' value={0} />
-        <TabIcon icon='slack' title='Slack' value={1} />
-        <Tab label="Item Three" />
-        <Tab label="Item Four" />
-        <Tab label="Item Five" />
-        <Tab label="Item Six" />
+      >
+        {itens.map((item) => tabIcon(item))}
       </Tabs>
     </div>
   );

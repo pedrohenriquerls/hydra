@@ -30,6 +30,17 @@ const layoutStyle = makeStyles(theme => ({
 function Layout() {
   const classes = layoutStyle();
   const [value, setValue] = React.useState(0);
+  const itens = [{icon: 'slack', title: 'Slack', src: 'http://google.com', id: 1}, {icon: 'slack', title: 'Slack', src: 'http://trello.com', id: 2}];
+  const tabsContent = itens.map((item, index) => {
+    return (<TabPanel
+      key={index}
+      index={index}
+      className={classes.content}
+      src={item.src}
+      id={item.id}
+      value={value}
+    />)
+  });
 
   return (
     <Grid
@@ -41,10 +52,14 @@ function Layout() {
       className={classes.root}
     >
       <Grid item xs={2} className={classes.list}>
-        <VerticalTabs value={value} setValue={setValue}/>
+        <VerticalTabs
+          value={value}
+          setValue={setValue}
+          itens={itens}
+        />
       </Grid>
       <Grid item xs className={classes.content}>
-        <TabPanel index={0} className={classes.content} value={value}/>
+        {tabsContent}
       </Grid>
     </Grid>
   )
