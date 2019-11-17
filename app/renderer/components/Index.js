@@ -27,10 +27,10 @@ const layoutStyle = makeStyles(theme => ({
   },
 }));
 
-function Layout() {
+function Layout({itens: itens}) {
   const classes = layoutStyle();
   const [value, setValue] = React.useState(0);
-  const itens = [{icon: 'slack', title: 'Slack', src: 'http://google.com', id: 1}, {icon: 'slack', title: 'Slack', src: 'http://trello.com', id: 2}];
+
   const tabsContent = itens.map((item, index) => {
     return (<TabPanel
       key={index}
@@ -65,33 +65,23 @@ function Layout() {
   )
 }
 
-export default class Index extends Component {
-  static propTypes = {
-    onLogin: PropTypes.func.isRequired,
-  };
+Layout.propTypes = {
+  itens: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.string,
+    image: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+  }))
+}
 
+export default class Index extends Component {
   constructor(props) {
     super(props);
   }
 
-  state = {
-    username: '',
-  };
-
-  handleLogin = () => {
-    this.props.onLogin({
-      username: this.state.username,
-      loggedIn: true,
-    });
-  };
-
-  handleChange = (e) => {
-    this.setState({
-      username: e.target.value,
-    });
-  };
-
   render() {
-    return (<Layout/>);
+    const itens = [{icon: 'slack', title: 'Slack', src: 'http://google.com', id: '1'}, {icon: 'slack', title: 'Slack', src: 'http://trello.com', id: '2'}];
+    return (<Layout itens={itens}/>);
   }
 }

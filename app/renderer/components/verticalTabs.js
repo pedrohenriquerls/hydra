@@ -53,11 +53,12 @@ function fetchIconSrc(icon) {
   return `https://img.icons8.com/dusk/96/000000/${icon}.png`
 }
 
-function tabIcon({ icon, image, title }) {
+function tabIcon({ icon, image, title, id }) {
   const classes = useStyles();
 
   return (
     <Tab
+      key={id}
       icon={<ItemCard image={image || fetchIconSrc(icon)} title={title}/>}
       className={classes.tab}
       />
